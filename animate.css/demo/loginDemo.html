@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../animate.css">
+    <style>
+      *{
+        margin:0;
+        padding:0;
+      }
+      body{
+        margin:0;
+        font: normal 16px Arial, Helvetica, sand-serif;
+        color:#333;
+      }
+
+      #login{
+        background:#fff;
+        opacity:0.9;
+        padding:2em;
+        border:#ccc 2px solid;
+        position:absolute;
+        top:100px;
+        left:50px;
+      }
+
+      #login input[type="text"], #login input[type="password"]{
+        padding:7px;
+        margin-bottom:10px;
+        border:1px #ccc solid;
+      }
+    </style>
+</head>
+<body>
+<div id="login">
+  <div  id="ipt-username-container">
+    <label for="username">Username</label>
+    <br>
+    <input type="text" placeholder="Username" id="ipt-username">
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <br>
+    <input type="text" placeholder="Password"  id="ipt-pwd">
+  </div>
+  <input type="submit" value="Login" id="btn-login">
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script>
+  document.querySelector('#btn-login').addEventListener('click', function () {
+    let ndUserName = document.querySelector('#ipt-username')
+    if (ndUserName.value === '') {
+      console.log('add...')
+      ndUserName.closest('div').classList.add('animated')
+      ndUserName.closest('div').classList.add('shake')
+//      $('#lbl-username').closest('div').addClass('animated shake')
+      $('#ipt-username-container').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        $(this).removeClass('animated shake')
+      });
+    }
+
+    let ndPwd = document.querySelector('#ipt-pwd')
+    if (ndPwd.value === '') {
+      ndPwd.classList.add('animated')
+      ndPwd.classList.add('shake')
+      ndPwd.addEventListener('animationend', function () {
+        this.classList.remove('animated')
+        this.classList.remove('shake')
+      })
+    }
+  })
+</script>
+</body>
+</html>
